@@ -10,32 +10,32 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../ServoMoteur.c \
-../USI_msp2231.c \
+../initAll.c \
 ../main.c 
 
 C_DEPS += \
 ./ServoMoteur.d \
-./USI_msp2231.d \
+./initAll.d \
 ./main.d 
 
 OBJS += \
 ./ServoMoteur.obj \
-./USI_msp2231.obj \
+./initAll.obj \
 ./main.obj 
 
 OBJS__QUOTED += \
 "ServoMoteur.obj" \
-"USI_msp2231.obj" \
+"initAll.obj" \
 "main.obj" 
 
 C_DEPS__QUOTED += \
 "ServoMoteur.d" \
-"USI_msp2231.d" \
+"initAll.d" \
 "main.d" 
 
 C_SRCS__QUOTED += \
 "../ServoMoteur.c" \
-"../USI_msp2231.c" \
+"../initAll.c" \
 "../main.c" 
 
 

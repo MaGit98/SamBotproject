@@ -11,7 +11,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./ServoMoteur.obj" \
-"./USI_msp2231.obj" \
+"./initAll.obj" \
 "./main.obj" \
 "../lnk_msp430g2231.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -156,8 +156,8 @@ MSP430g2231.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ServoMoteur.obj" "USI_msp2231.obj" "main.obj" 
-	-$(RM) "ServoMoteur.d" "USI_msp2231.d" "main.d" 
+	-$(RM) "ServoMoteur.obj" "initAll.obj" "main.obj" 
+	-$(RM) "ServoMoteur.d" "initAll.d" "main.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
