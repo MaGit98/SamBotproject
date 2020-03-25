@@ -7,27 +7,8 @@
 
 #include <msp430.h>
 #include <string.h>
-
-#define RELEASE "\r\t\tSPI-rIII162018"
-#define PROMPT  "\r\nmaster>"
-#define CMDLEN  10
-
-#define TRUE    1
-#define FALSE   0
-
-#define LF      0x0A            // line feed or \n
-#define CR      0x0D            // carriage return or \r
-#define BSPC    0x08            // back space
-#define DEL     0x7F            // SUPRESS
-#define ESC     0x1B            // escape
-
-#define _CS         BIT4            // chip select for SPI Master->Slave ONLY on 4 wires Mode
-#define SCK         BIT5            // Serial Clock
-#define DATA_OUT    BIT6            // DATA out
-#define DATA_IN     BIT7            // DATA in
-
-#define LED_R       BIT0            // Red LED on Launchpad
-#define LED_G       BIT6            // Green LED
+#include "main.h"
+#include "Motor.h"
 
 
 
@@ -35,6 +16,7 @@
  * Variables globales
  */
 unsigned char cmd[CMDLEN];
+unsigned int interpreteur_state = 0;
 
 void init_UART( void )
 {
@@ -132,29 +114,75 @@ void interpreteur( void )
         envoi_msg_UART("\r\n'ver' : version");
         envoi_msg_UART("\r\n'0' : LED off");
         envoi_msg_UART("\r\n'1' : LED on");
-        envoi_msg_UART("\r\n'h' : help\r\n");
+        envoi_msg_UART("\r\n'2' : LED switch");
+        envoi_msg_UART("\r\n'h' : help");
+        envoi_msg_UART("\r\n'robot order' : display the order\r\n");
+        envoi_msg_UART("\r\n'robot menu' : go to the robot menu\r\n");
     }
     else if (strcmp((const char *)cmd, "0") == 0)
     {
-        envoi_msg_UART("\r\n");
+        envoi_msg_UART(NEW_LINE);
         envoi_msg_UART((unsigned char *)cmd);
         envoi_msg_UART("->");
         Send_char_SPI(0x30); // Send '0' over SPI to Slave
-        envoi_msg_UART("\r\n");
+        envoi_msg_UART(NEW_LINE);
+        P1OUT &= ~LED_R;
     }
     else if (strcmp((const char *)cmd, "1") == 0)
     {
-        envoi_msg_UART("\r\n");
+        envoi_msg_UART(NEW_LINE);
         envoi_msg_UART((unsigned char *)cmd);
         envoi_msg_UART("->");
         Send_char_SPI(0x31); // Send '1' over SPI to Slave
-        envoi_msg_UART("\r\n");
+        envoi_msg_UART(NEW_LINE);
+        P1OUT|=LED_R;
     }
+    else if (strcmp((const char *)cmd, "2") == 0)
+     {
+         envoi_msg_UART(NEW_LINE);
+         envoi_msg_UART((unsigned char *)cmd);
+         envoi_msg_UART("->");
+         Send_char_SPI(0x32); // Send '2' over SPI to Slave
+         envoi_msg_UART(NEW_LINE);
+         P1OUT^=LED_R;
+     }
     else if (strcmp((const char *)cmd, "ver") == 0)
     {
-        envoi_msg_UART("\r\n");
+        envoi_msg_UART(NEW_LINE);
         envoi_msg_UART(RELEASE);
-        envoi_msg_UART("\r\n");
+        envoi_msg_UART(NEW_LINE);
+    }
+    else if (strcmp((const char *)cmd, "robot order") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'stop' : stop the robot   -   ");
+        envoi_msg_UART("'go' : move forward the robot");
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'forward' : the robot move forward   -   ");
+        envoi_msg_UART("'back' : the robot move back off");
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'right' : the robot move to its right   -   ");
+        envoi_msg_UART("'left' : the robot move to its left");
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'detection on' : activate the obstacle detection   -   ");
+        envoi_msg_UART("'detection off' : deactivate the obstacle detection");
+        envoi_msg_UART(NEW_LINE);
+    }
+    else if (strcmp((const char *)cmd, "robot menu") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART(NEW_LINE);
+        interpreteur_state = 1;
+        initialiser_moteur();
+        envoi_msg_UART("\rRobot Ready !\r\n"); // user prompt
+        envoi_msg_UART(PROMPT);        //---------------------------- command prompt
+       }
+    else if (strcmp((const char *)cmd, "") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART(RELEASE);
+        envoi_msg_UART(NEW_LINE);
     }
     else                          //---------------------------- default choice
     {
@@ -165,3 +193,43 @@ void interpreteur( void )
 }
 
 
+void interpreteur_robot( void )
+{
+    if(strcmp((const char *)cmd, "h") == 0)          //----------------------------------- help
+    {
+        envoi_msg_UART("\r\nCommandes :");
+        envoi_msg_UART("\r\n'h' : help");
+        envoi_msg_UART("\r\n'robot order' : display the order\r\n");
+        envoi_msg_UART("\r\n'robot menu' : go to the robot menu\r\n");
+        envoi_msg_UART("\r\n'menu' : go to the menu\r\n");
+    }
+
+    else if (strcmp((const char *)cmd, "robot order") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'stop' : stop the robot   -   ");
+        envoi_msg_UART("'go' : move forward the robot");
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'forward' : the robot move forward   -   ");
+        envoi_msg_UART("'back' : the robot move back off");
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'right' : the robot move to its right   -   ");
+        envoi_msg_UART("'left' : the robot move to its left");
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("'detection on' : activate the obstacle detection   -   ");
+        envoi_msg_UART("'detection off' : deactivate the obstacle detection");
+        envoi_msg_UART(NEW_LINE);
+    }
+    else if (strcmp((const char *)cmd, "") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART(RELEASE);
+        envoi_msg_UART(NEW_LINE);
+    }
+    else                          //---------------------------- default choice
+    {
+        envoi_msg_UART("\r\n ?");
+        envoi_msg_UART((unsigned char *)cmd);
+    }
+    envoi_msg_UART(PROMPT_ROBOT);        //---------------------------- command prompt
+}

@@ -10,6 +10,8 @@ Uart.obj: D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-ms
 Uart.obj: D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/_ti_config.h
 Uart.obj: D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/linkage.h
 Uart.obj: D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/cdefs.h
+Uart.obj: ../main.h
+Uart.obj: ../Motor.h
 
 ../Uart.c: 
 D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/ccs_base/msp430/include/msp430.h: 
@@ -21,3 +23,5 @@ D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.
 D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/_ti_config.h: 
 D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/linkage.h: 
 D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/cdefs.h: 
+../main.h: 
+../Motor.h: 

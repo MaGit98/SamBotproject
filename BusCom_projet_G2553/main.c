@@ -27,41 +27,18 @@
 #include <msp430.h>
 #include <string.h>
 #include "Uart.h"
+#include "main.h"
 
-/*
- * Prototypes
- */
-void init_BOARD( void );
 
-/*
- * Definitions
- */
-#define RELEASE "\r\t\tSPI-rIII162018"
-#define PROMPT  "\r\nmaster>"
-#define CMDLEN  10
 
-#define TRUE    1
-#define FALSE   0
-
-#define LF      0x0A            // line feed or \n
-#define CR      0x0D            // carriage return or \r
-#define BSPC    0x08            // back space
-#define DEL     0x7F            // SUPRESS
-#define ESC     0x1B            // escape
-
-#define _CS         BIT4            // chip select for SPI Master->Slave ONLY on 4 wires Mode
-#define SCK         BIT5            // Serial Clock
-#define DATA_OUT    BIT6            // DATA out
-#define DATA_IN     BIT7            // DATA in
-
-#define LED_R       BIT0            // Red LED on Launchpad
-#define LED_G       BIT6            // Green LED
 
 /*
  * Variables globales
  */
 // static const char spi_in = 0x37;
 extern unsigned char cmd[CMDLEN];      // tableau de caracteres lie a la commande user
+extern int interpreteur_state;
+
 unsigned char car = 0x30;       // 0
 unsigned int  nb_car = 0;
 unsigned char intcmd = FALSE;   // call interpreteur()
@@ -106,6 +83,9 @@ void init_BOARD( void )
     P1SEL2 &= ~LED_R;
     P1DIR |= LED_R ;  // LED: output
     P1OUT &= ~LED_R ;
+
+    P1OUT|=LED_R;
+    P1OUT|=LED_G;
 }
 
 /* ----------------------------------------------------------------------------
@@ -141,7 +121,14 @@ void main( void )
             //while ((UCB0STAT & UCBUSY));   // attend que USCI_SPI soit dispo.
             //for ()
             //tampon[50]// ajoute le caractere au tampon
-            interpreteur();         // execute la commande utilisateur
+            if (interpreteur_state == 1)
+            {
+                interpreteur_robot();
+            }
+            else
+            {
+                interpreteur();         // execute la commande utilisateur
+            }
             intcmd = FALSE;         // acquitte la commande en cours
         }
         else
@@ -202,5 +189,6 @@ __interrupt void USCIAB0RX_ISR()
         cmd[1] = 0x00;
         P1OUT ^= LED_R;
     }
+
 }
 //------------------------------------------------------------------ End ISR
