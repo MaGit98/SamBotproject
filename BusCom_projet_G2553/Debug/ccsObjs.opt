@@ -1,1 +1,1 @@
-"./Motor.obj" "./Uart.obj" "./main.obj" "../lnk_msp430g2553.cmd" -llibc.a 
+"./Motor.obj" "./Spi.obj" "./Uart.obj" "./main.obj" "../lnk_msp430g2553.cmd" -llibc.a 

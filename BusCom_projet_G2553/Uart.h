@@ -12,9 +12,8 @@
 
 
 void init_UART( void );
-void init_USCI( void );
+
 void envoi_msg_UART(unsigned char * );
-void Send_char_SPI( unsigned char );
 void interpreteur( void );
 void interpreteur_robot( void );
 

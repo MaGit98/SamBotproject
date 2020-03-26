@@ -11,6 +11,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./Motor.obj" \
+"./Spi.obj" \
 "./Uart.obj" \
 "./main.obj" \
 "../lnk_msp430g2553.cmd" \
@@ -156,8 +157,8 @@ BusCom_projet_G2553.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Motor.obj" "Uart.obj" "main.obj" 
-	-$(RM) "Motor.d" "Uart.d" "main.d" 
+	-$(RM) "Motor.obj" "Spi.obj" "Uart.obj" "main.obj" 
+	-$(RM) "Motor.d" "Spi.d" "Uart.d" "main.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
