@@ -9,33 +9,21 @@ CMD_SRCS += \
 ../lnk_msp430g2231.cmd 
 
 C_SRCS += \
-../ServoMoteur.c \
-../USI_msp2231.c \
-../main.c 
+../ServoMoteur_v2.c 
 
 C_DEPS += \
-./ServoMoteur.d \
-./USI_msp2231.d \
-./main.d 
+./ServoMoteur_v2.d 
 
 OBJS += \
-./ServoMoteur.obj \
-./USI_msp2231.obj \
-./main.obj 
+./ServoMoteur_v2.obj 
 
 OBJS__QUOTED += \
-"ServoMoteur.obj" \
-"USI_msp2231.obj" \
-"main.obj" 
+"ServoMoteur_v2.obj" 
 
 C_DEPS__QUOTED += \
-"ServoMoteur.d" \
-"USI_msp2231.d" \
-"main.d" 
+"ServoMoteur_v2.d" 
 
 C_SRCS__QUOTED += \
-"../ServoMoteur.c" \
-"../USI_msp2231.c" \
-"../main.c" 
+"../ServoMoteur_v2.c" 
 
 

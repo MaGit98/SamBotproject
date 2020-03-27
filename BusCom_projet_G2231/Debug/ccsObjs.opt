@@ -1,1 +1,1 @@
-"./ServoMoteur.obj" "./USI_msp2231.obj" "./main.obj" "../lnk_msp430g2231.cmd" -llibc.a 
+"./ServoMoteur_v2.obj" "../lnk_msp430g2231.cmd" -llibc.a 

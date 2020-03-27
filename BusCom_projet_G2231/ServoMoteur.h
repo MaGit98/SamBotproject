@@ -8,8 +8,8 @@
 #ifndef SERVOMOTEUR_H_
 #define SERVOMOTEUR_H_
 
-void tournerUSmoins45();
-void tournerUSplus45();
-
+void tournerUSmoins905();
+void tournerUSplus90();
+void tournerAOrigine();
 
 #endif /* SERVOMOTEUR_H_ */
