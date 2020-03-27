@@ -80,7 +80,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="ProfSPI_2231.c|lnk_msp430g2231.cmd|SPI_2231.c|ServoMoteur_v2.c|ServoMoteur.c|main.c|initAll.c|servomoteurprofesseur.c|ultraSound.c|ProfSPI_2553.c|USI_msp2231.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="testPins.c|ProfSPI_2231.c|lnk_msp430g2231.cmd|ServoMoteur_v2.c|ServoMoteur.c|main.c|initAll.c|servomoteurprofesseur.c|ultraSound.c|ProfSPI_2553.c|USI_msp2231.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
