@@ -13,16 +13,26 @@
  * 		SIMO : P1.7 / SDI
  * 		MOSI : P1.6	/ SDO
  *
- * A la reception du caractère 1 la LED Rouge P1.0 est allumée
- *
- * A la reception du caractère 0 la LED Rouge P1.0 est eteinte
  *
  */
+
 #include <msp430.h> 
 #include <intrinsics.h>
+#include <string.h>
 
+/*
+ * Definitions
+ */
+#define CMDLEN  15
+
+
+/*
+ * Variables globales
+ */
 volatile unsigned char RXDta;
-
+unsigned int recording_on=0;
+unsigned char cmd[CMDLEN];
+unsigned int position=0;
 /*
  * main.c
  */
@@ -99,6 +109,20 @@ __interrupt void universal_serial_interface(void)
 	{
 		P1OUT &= ~BIT0; //turn off LED
 	}
+	else if (RXDta == 0x23)
+    {
+        recording_on=1;
+    }
+    else if (RXDta == 0x21)
+    {
+        recording_on=0;
+        postion=0;
+    }
+    else if (recording_on==1)
+    {
+        RXDta=cmd[position];
+        position+=1;
+    }
 	USISRL = RXDta;
 	USICNT &= ~USI16B;  // re-load counter & ignore USISRH
 	USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
