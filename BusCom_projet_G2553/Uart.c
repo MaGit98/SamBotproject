@@ -185,7 +185,7 @@ void interpreteur_robot( void )
         envoi_msg_UART(RELEASE);
         envoi_msg_UART(NEW_LINE);
     }
-    else if (strcmp((const char *)cmd, "robot menu") == 0)
+    else if (strcmp((const char *)cmd, "menu") == 0)
     {
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART((unsigned char *)cmd);
