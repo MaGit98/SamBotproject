@@ -12,6 +12,7 @@ main.obj: D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-ms
 main.obj: D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/cdefs.h
 main.obj: ../Uart.h
 main.obj: ../main.h
+main.obj: ../Spi.h
 
 ../main.c: 
 D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/ccs_base/msp430/include/msp430.h: 
@@ -25,3 +26,4 @@ D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.
 D:/Logiciels/Code\ Composer\ Studio/CCS/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/cdefs.h: 
 ../Uart.h: 
 ../main.h: 
+../Spi.h: 

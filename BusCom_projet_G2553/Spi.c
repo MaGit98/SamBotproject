@@ -107,4 +107,7 @@ void Display_text_SPI(void)
 
     }
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
