@@ -53,7 +53,11 @@ P1SEL &= ~(BIT0 | BIT6); // Port 1, ligne 0 et 6 en fonction primaire
 P1DIR |= (BIT0 | BIT6 ); // P1.0 et P1.6 en sortie
 P1OUT &= ~(BIT0 | BIT6); // P1.0 et P1.6 à 0
 
-P1DIR &=~BIT3; // Port 1 ligne 3 en entrée
+P1DIR |= BIT2; // Pin 1.2 en sortie
+P1OUT &= ~BIT2; // mise à zero de 1.2
+P1SEL |= BIT2;
+
+P1DIR &= ~BIT3; // Port 1 ligne 3 en entrée
 P1REN |= BIT3; // Activation de la resistance de tirage
 P1OUT |= BIT3; // Resistance en Pull-Up
 P1IES &=~BIT3; // Detection de front montant

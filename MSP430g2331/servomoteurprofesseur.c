@@ -19,8 +19,8 @@
  * +--------------------------+
  * ---------------------------------------------------------------------------
  */
-#define MOTORS_FREQUENCY 33333 // motors period T=30 ms (0.0333 s) soit 30 Hz
-#define MOTORS_DUTYCYCLE 1250 // motors duty cycle 50% soit 0.00125 ms 1250 μs
+#define MOTORS_FREQUENCY 20000 // motors period T=30 ms (0.0333 s) soit 30 Hz
+#define MOTORS_DUTYCYCLE 10000 // motors duty cycle 50% soit 0.00125 ms 1250 μs
 #define STEP_ANGLE 72 // step for 1 deg PW[500-3000 μs]/180deg
 #define PW_MIN 504 // 500/72=7 7*72=504
 #define PW_MAX 2448 // 3000/72=41 41*72=2952
@@ -112,6 +112,7 @@ __bis_SR_register(LPM0_bits | GIE); // general interrupts enable & Low Power Mod
 /* ************************************************************************* */
 /* VECTEUR INTERRUPTION PORT 1 */
 /* ************************************************************************* */
+
 #pragma vector = PORT1_VECTOR
 __interrupt void PORT1_ISR(void)
 {

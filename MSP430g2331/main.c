@@ -7,9 +7,11 @@
 
 
 int main (void){
-    InitAll();
+    InitAll(); // initialise toutes les fonctions nécessaire au programme
+
     tournerUSmoins90();
-    while(1);
+    __delay_cycles(2000000);
+    tournerUSplus90();
 
 
 }
