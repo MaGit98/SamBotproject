@@ -45,7 +45,7 @@ void envoi_msg_UART(unsigned char *msg)
     unsigned int i = 0;
     for(i=0 ; msg[i] != 0x00 ; i++)
     {
-        while(!(IFG2 & UCA0TXIFG));    //attente de fin du dernier envoi (UCA0TXIFG à 1 quand UCA0TXBUF vide)
+        while(!(IFG2 & UCA0TXIFG));    //attente de fin du dernier envoi (UCA0TXIFG ï¿½ 1 quand UCA0TXBUF vide)
         UCA0TXBUF=msg[i];
     }
 }
@@ -185,7 +185,7 @@ void interpreteur_robot( void )
         envoi_msg_UART(RELEASE);
         envoi_msg_UART(NEW_LINE);
     }
-    else if (strcmp((const char *)cmd, "robot menu") == 0)
+    else if (strcmp((const char *)cmd, "menu") == 0)
     {
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART((unsigned char *)cmd);
