@@ -11,5 +11,7 @@
 void init_USCI( void );
 void Send_char_SPI( unsigned char );
 void Send_text_SPI(unsigned char text[]);
+void Display_text_SPI(void);
 
 #endif /* SPI_H_ */
+

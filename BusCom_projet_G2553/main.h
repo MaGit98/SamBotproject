@@ -15,6 +15,7 @@
 #define RELEASE "\r\t\tSPI-rIII162018"
 #define PROMPT  "\r\nmaster>"
 #define PROMPT_ROBOT  "\r\nmaster_robot>"
+#define PROMPT_SLAVE  "\r\nslave>"
 #define NEW_LINE "\r\n"
 #define CMDLEN  15
 

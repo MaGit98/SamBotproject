@@ -63,7 +63,7 @@ void interpreteur( void )
         envoi_msg_UART("\r\n'2' : LED switch");
         envoi_msg_UART("\r\n'h' : help");
         envoi_msg_UART("\r\n'LED test' : test if the distant Led is off");
-        envoi_msg_UART("\r\n'robot order' : display the order\r\n");
+        envoi_msg_UART("\r\n'robot order' : display the order");
         envoi_msg_UART("\r\n'robot menu' : go to the robot menu\r\n");
     }
     else if (strcmp((const char *)cmd, "0") == 0)
@@ -80,7 +80,7 @@ void interpreteur( void )
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART((unsigned char *)cmd);
         envoi_msg_UART("->");
-        Send_text_SPI("LED test"); // Send '0' over SPI to Slave
+        //Send_text_SPI("LED test"); // Send '0' over SPI to Slave
         envoi_msg_UART(NEW_LINE);
     }
     else if (strcmp((const char *)cmd, "1") == 0)
@@ -131,13 +131,17 @@ void interpreteur( void )
         interpreteur_state = 1;
         initialiser_moteur();
         envoi_msg_UART("\rRobot Ready !\r\n"); // user prompt
-        envoi_msg_UART(PROMPT);        //---------------------------- command prompt
-       }
+        envoi_msg_UART(PROMPT_ROBOT);        //---------------------------- command prompt
+     }
     else if (strcmp((const char *)cmd, "") == 0)
     {
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART(RELEASE);
         envoi_msg_UART(NEW_LINE);
+    }
+    else if (strcmp((const char *)cmd, 0x10) == 0)
+    {
+        envoi_msg_UART(DEL);
     }
     else                          //---------------------------- default choice
     {
@@ -181,6 +185,15 @@ void interpreteur_robot( void )
         envoi_msg_UART(RELEASE);
         envoi_msg_UART(NEW_LINE);
     }
+    else if (strcmp((const char *)cmd, "robot menu") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART(NEW_LINE);
+        interpreteur_state = 0;
+        envoi_msg_UART("\rReady !\r\n"); // user prompt
+        envoi_msg_UART(PROMPT);        //---------------------------- command prompt
+     }
     else                          //---------------------------- default choice
     {
         envoi_msg_UART("\r\n ?");

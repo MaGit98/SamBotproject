@@ -9,18 +9,18 @@
  * (c)-Yann DUCHEMIN / ESIGELEC - r.III162018 for CCS
  * --------------------------------------------------------------
  *
- * La carte Launchpad est raccordée en SPI via l'USI B0
+ * La carte Launchpad est raccordÃ©e en SPI via l'USI B0
  * SCLK : P1.5 / UCB0CLK, clock in/out
  * SIMO : P1.7 / UCB0SIMO, master OUT
  * MOSI : P1.6 / UCB0SOMI, master IN
  *
- * A la reception du caractère 1 sur l'UART,
- *  le caractère est transmis sur le bus SPI,
- *  et affiché en echo sur l'UART
+ * A la reception du caractÃ¨re 1 sur l'UART,
+ *  le caractÃ¨re est transmis sur le bus SPI,
+ *  et affichÃ© en echo sur l'UART
  *
- * A la reception du caractère 0 sur l'UART,
- *  le caractère est transmis sur le bus SPI,
- *  et affiché en echo sur l'UART
+ * A la reception du caractÃ¨re 0 sur l'UART,
+ *  le caractÃ¨re est transmis sur le bus SPI,
+ *  et affichÃ© en echo sur l'UART
  *
  */
 
@@ -28,7 +28,7 @@
 #include <string.h>
 #include "Uart.h"
 #include "main.h"
-
+#include "Spi.h"
 
 
 
@@ -119,8 +119,7 @@ void main( void )
         if( intcmd )
         {
             //while ((UCB0STAT & UCBUSY));   // attend que USCI_SPI soit dispo.
-            //for ()
-            //tampon[50]// ajoute le caractere au tampon
+
             if (interpreteur_state == 1)
             {
                 interpreteur_robot();
@@ -150,9 +149,9 @@ __interrupt void USCIAB0RX_ISR()
     if (IFG2 & UCA0RXIFG)
     {
         while(!(IFG2 & UCA0RXIFG));
-        cmd[nb_car]=UCA0RXBUF;         // lecture caractère reçu
+        cmd[nb_car]=UCA0RXBUF;         // lecture caractÃ¨re reÃ§u
 
-        while(!(IFG2 & UCA0TXIFG));    // attente de fin du dernier envoi (UCA0TXIFG à 1 quand UCA0TXBUF vide) / echo
+        while(!(IFG2 & UCA0TXIFG));    // attente de fin du dernier envoi (UCA0TXIFG Ã  1 quand UCA0TXBUF vide) / echo
         UCA0TXBUF = cmd[nb_car];
 
         if( cmd[nb_car] == ESC)
@@ -161,6 +160,11 @@ __interrupt void USCIAB0RX_ISR()
             cmd[1] = 0x00;
             cmd[0] = CR;
         }
+
+        /*if( cmd[nb_car] == 0x10)
+        {
+            envoi_msg_UART(0x10);
+        }*/
 
         if( (cmd[nb_car] == CR) || (cmd[nb_car] == LF))
         {
@@ -187,6 +191,7 @@ __interrupt void USCIAB0RX_ISR()
         while(!(IFG2 & UCB0RXIFG));
         cmd[0] = UCB0RXBUF;
         cmd[1] = 0x00;
+        Display_text_SPI();
         P1OUT ^= LED_R;
     }
 

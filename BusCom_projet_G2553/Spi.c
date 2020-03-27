@@ -79,7 +79,7 @@ void Send_text_SPI(unsigned char  text[])
 {
     unsigned char *p;
     p = text;
-    Send_char_SPI(0x23);
+    Send_char_SPI(0x23);  //all communication begin by "#" and end by "!"
     while(*p != 0)
     {
         Send_char_SPI(*p);
@@ -87,3 +87,24 @@ void Send_text_SPI(unsigned char  text[])
     }
     Send_char_SPI(0x21);
 }
+
+//dsiplay text from SPI to UART screen
+void Display_text_SPI(void)
+{
+    if(UCB0RXBUF == "#")
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART(PROMPT);
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("->");
+        while (UCB0RXBUF == "!")
+        {
+            envoi_msg_UART(UCB0RXBUF);
+        }
+    }
+    else
+    {
+
+    }
+}
+
