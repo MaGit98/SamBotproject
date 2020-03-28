@@ -6,24 +6,24 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CMD_SRCS += \
-../lnk_msp430g2553.cmd 
+../lnk_msp430g2231.cmd 
 
 C_SRCS += \
-../spi.c 
+../ultraSound.c 
 
 C_DEPS += \
-./spi.d 
+./ultraSound.d 
 
 OBJS += \
-./spi.obj 
+./ultraSound.obj 
 
 OBJS__QUOTED += \
-"spi.obj" 
+"ultraSound.obj" 
 
 C_DEPS__QUOTED += \
-"spi.d" 
+"ultraSound.d" 
 
 C_SRCS__QUOTED += \
-"../spi.c" 
+"../ultraSound.c" 
 
 

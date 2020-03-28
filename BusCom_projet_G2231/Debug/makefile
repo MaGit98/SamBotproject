@@ -10,8 +10,8 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./spi.obj" \
-"../lnk_msp430g2553.cmd" \
+"./ultraSound.obj" \
+"../lnk_msp430g2231.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -140,7 +140,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 MSP430g2231.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: MSP430 Linker'
-	"C:/ti/ccs930/ccs/tools/compiler/ti-cgt-msp430_18.12.4.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power="2,3,4,5,6,7,8,9,10,11,12,13,14,15" --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"MSP430g2231.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccs930/ccs/ccs_base/msp430/include" -i"C:/ti/ccs930/ccs/tools/compiler/ti-cgt-msp430_18.12.4.LTS/lib" -i"C:/ti/ccs930/ccs/tools/compiler/ti-cgt-msp430_18.12.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="MSP430g2231_linkInfo.xml" --use_hw_mpy=none --rom_model -o "MSP430g2231.out" $(ORDERED_OBJS)
+	"C:/ti/ccs930/ccs/tools/compiler/ti-cgt-msp430_18.12.4.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power="2,3,4,5,6,7,8,9,10,11,12,13,14,15" --define=__MSP430G2231__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"MSP430g2231.map" --heap_size=0 --stack_size=50 -i"C:/ti/ccs930/ccs/ccs_base/msp430/include" -i"C:/ti/ccs930/ccs/tools/compiler/ti-cgt-msp430_18.12.4.LTS/lib" -i"C:/ti/ccs930/ccs/tools/compiler/ti-cgt-msp430_18.12.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="MSP430g2231_linkInfo.xml" --use_hw_mpy=none --rom_model -o "MSP430g2231.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
@@ -154,8 +154,8 @@ MSP430g2231.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "spi.obj" 
-	-$(RM) "spi.d" 
+	-$(RM) "ultraSound.obj" 
+	-$(RM) "ultraSound.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

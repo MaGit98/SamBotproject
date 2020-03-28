@@ -25,7 +25,6 @@
  */
 #define CMDLEN  15
 
-
 /*
  * Variables globales
  */
@@ -33,9 +32,11 @@ volatile unsigned char RXDta;
 unsigned int recording_on=0;
 unsigned char cmd[CMDLEN];
 unsigned int position=0;
+
 /*
  * main.c
  */
+
 void main( void )
 {
     // Stop watchdog timer to prevent time out reset
@@ -116,7 +117,7 @@ __interrupt void universal_serial_interface(void)
     else if (RXDta == 0x21)
     {
         recording_on=0;
-        postion=0;
+        position=0;
     }
     else if (recording_on==1)
     {

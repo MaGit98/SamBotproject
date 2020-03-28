@@ -1,1 +1,1 @@
-"./spi.obj" "../lnk_msp430g2553.cmd" -llibc.a 
+"./ultraSound.obj" "../lnk_msp430g2231.cmd" -llibc.a 

@@ -41,6 +41,7 @@ void Send_char_SPI( unsigned char );
 /*
  * Definitions
  */
+
 #define RELEASE "\r\t\tSPI-rIII162018"
 #define PROMPT  "\r\nmaster>"
 #define CMDLEN  10

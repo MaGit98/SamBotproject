@@ -42,9 +42,6 @@ void main(void)
         if(distance < 20 && distance != 0) P1OUT |= 0x01;  //turning LED on if distance is less than 20cm and if distance isn't 0.
         else P1OUT &= ~0x01;
 
-
-
-
  }
 }
 
