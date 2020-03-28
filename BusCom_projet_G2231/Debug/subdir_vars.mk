@@ -9,21 +9,21 @@ CMD_SRCS += \
 ../lnk_msp430g2553.cmd 
 
 C_SRCS += \
-../testPins.c 
+../spi.c 
 
 C_DEPS += \
-./testPins.d 
+./spi.d 
 
 OBJS += \
-./testPins.obj 
+./spi.obj 
 
 OBJS__QUOTED += \
-"testPins.obj" 
+"spi.obj" 
 
 C_DEPS__QUOTED += \
-"testPins.d" 
+"spi.d" 
 
 C_SRCS__QUOTED += \
-"../testPins.c" 
+"../spi.c" 
 
 

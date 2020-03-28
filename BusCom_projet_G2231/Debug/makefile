@@ -10,7 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./testPins.obj" \
+"./spi.obj" \
 "../lnk_msp430g2553.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
@@ -154,8 +154,8 @@ MSP430g2231.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "testPins.obj" 
-	-$(RM) "testPins.d" 
+	-$(RM) "spi.obj" 
+	-$(RM) "spi.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
