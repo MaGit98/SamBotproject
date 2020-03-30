@@ -80,7 +80,7 @@ void interpreteur( void )
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART((unsigned char *)cmd);
         envoi_msg_UART("->");
-        //Send_text_SPI("LED test"); // Send '0' over SPI to Slave
+        Send_text_SPI("LED test"); // Send '0' over SPI to Slave
         envoi_msg_UART(NEW_LINE);
     }
     else if (strcmp((const char *)cmd, "1") == 0)
