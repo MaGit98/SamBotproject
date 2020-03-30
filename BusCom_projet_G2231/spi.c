@@ -132,10 +132,6 @@ __interrupt void universal_serial_interface(void)
     USICNT &= ~USI16B;  // re-load counter & ignore USISRH
     USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 }
 //------------------------------------------------------------------ End ISR
 
