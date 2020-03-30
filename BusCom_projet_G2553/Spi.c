@@ -94,12 +94,12 @@ void Display_text_SPI(void)
     if(UCB0RXBUF == "#")
     {
         envoi_msg_UART(NEW_LINE);
-        envoi_msg_UART(PROMPT);
+        envoi_msg_UART(PROMPT_SLAVE);
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART("->");
-        while (UCB0RXBUF == "!")
+        while (UCB0TXBUF == "!")
         {
-            envoi_msg_UART(UCB0RXBUF);
+            envoi_msg_UART(UCB0TXBUF);
         }
     }
     else

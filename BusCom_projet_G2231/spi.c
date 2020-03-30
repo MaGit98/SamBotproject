@@ -30,10 +30,12 @@
 /*
  * Variables globales
  */
+unsigned char TXDta;
 volatile unsigned char RXDta;
 unsigned int recording_on=0;
-unsigned char cmd[CMDLEN];
 unsigned int position=0;
+unsigned char cmd[CMDLEN];
+
 /*
  * main.c
  */
@@ -67,6 +69,7 @@ void main( void )
     USICTL0 |= USISWRST;
     USICTL1 = 0;
 
+    USIOE = 0;//clearing the USIOE if there is only one slave, disable the SDO pin
     // 3 wire, mode Clk&Ph / 14.2.3 p400
     // SDI-SDO-SCLK - LSB First - Output Enable - Transp. Latch
     USICTL0 |= (USIPE7 | USIPE6 | USIPE5 | USILSB | USIOE | USIGE );
@@ -124,8 +127,27 @@ __interrupt void universal_serial_interface(void)
         RXDta=cmd[position];
         position+=1;
     }
-    USISRL = RXDta;
+    USISRL = TXDta;
     USICNT &= ~USI16B;  // re-load counter & ignore USISRH
     USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
+
+    USISR //USI shift register
 }
 //------------------------------------------------------------------ End ISR
+
+void Send_message_SPI (void)
+{
+    if(strcmp((const char *)cmd, "LED test") == 0)
+    {
+        if(P1OUT|0==0)//Led Off
+        {
+            TXDta=0x31;
+        }
+        if(P1OUT&1==1)//Led On
+        {
+            TXDta=0x30;
+        }
+    }
+}
+
+

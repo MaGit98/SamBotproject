@@ -187,12 +187,17 @@ __interrupt void USCIAB0RX_ISR()
     //--------------- SPI
     else if (IFG2 & UCB0RXIFG)
     {
-        while( (UCB0STAT & UCBUSY) && !(UCB0STAT & UCOE) );
+        while( (UCB0STAT & UCBUSY) && !(UCB0STAT & UCOE) );  //UCOE=overrun errors
         while(!(IFG2 & UCB0RXIFG));
         cmd[0] = UCB0RXBUF;
         cmd[1] = 0x00;
-        Display_text_SPI();
         P1OUT ^= LED_R;
+        while(!(IFG2 & UCB0TXIFG));
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART(PROMPT_SLAVE);
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART("->");
+        envoi_msg_UART(UCB0TXBUF);
     }
 
 }
