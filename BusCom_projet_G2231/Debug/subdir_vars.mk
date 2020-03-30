@@ -9,21 +9,21 @@ CMD_SRCS += \
 ../lnk_msp430g2231.cmd 
 
 C_SRCS += \
-../ultraSound.c 
+../spi.c 
 
 C_DEPS += \
-./ultraSound.d 
+./spi.d 
 
 OBJS += \
-./ultraSound.obj 
+./spi.obj 
 
 OBJS__QUOTED += \
-"ultraSound.obj" 
+"spi.obj" 
 
 C_DEPS__QUOTED += \
-"ultraSound.d" 
+"spi.d" 
 
 C_SRCS__QUOTED += \
-"../ultraSound.c" 
+"../spi.c" 
 
 
