@@ -82,7 +82,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="spi.c|ProfSPI_2231.c|lnk_msp430g2553.cmd|testPins.c|ServoMoteur_v2.c|ServoMoteur.c|main.c|initAll.c|servomoteurprofesseur.c|ProfSPI_2553.c|USI_msp2231.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="ultraSound.c|ProfSPI_2231.c|lnk_msp430g2553.cmd|testPins.c|ServoMoteur_v2.c|ServoMoteur.c|main.c|initAll.c|servomoteurprofesseur.c|ProfSPI_2553.c|USI_msp2231.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
