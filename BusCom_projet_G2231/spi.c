@@ -131,7 +131,6 @@ __interrupt void universal_serial_interface(void)
     USISRL = TXDta;
     USICNT &= ~USI16B;  // re-load counter & ignore USISRH
     USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
-
 }
 //------------------------------------------------------------------ End ISR
 
