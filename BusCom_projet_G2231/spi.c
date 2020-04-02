@@ -36,6 +36,28 @@ unsigned int recording_on=0;
 unsigned int position=0;
 unsigned char cmd[CMDLEN];
 
+void Send_message_SPI (void)
+{
+    if(strcmp((const char *)cmd, "LED test") == 0)
+    {
+
+        P1OUT |=BIT0;
+
+        if(P1OUT|0==0)//Led Off
+        {
+            TXDta=0x31;
+            USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+            USICNT = 0x08;
+        }
+        if(P1OUT&1==1)//Led On
+        {
+            TXDta=0x30;
+            USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+            USICNT = 0x08;
+        }
+    }
+}
+
 /*
  * main.c
  */
@@ -109,13 +131,12 @@ __interrupt void universal_serial_interface(void)
     if (RXDta == 0x31) //if the input buffer is 0x31 (mainly to read the buffer)
     {
         P1OUT |= BIT0; //turn on LED
-        TXDta=0x31;
-        USICNT &= ~USI16B;  // re-load counter & ignore USISRH
-        USICNT = 0x08;
+        //TXDta=0x0F;
     }
     else if (RXDta == 0x30)
     {
         P1OUT &= ~BIT0; //turn off LED
+        TXDta=0x0A;
     }
     else if (RXDta == 0x23)
     {
@@ -131,29 +152,12 @@ __interrupt void universal_serial_interface(void)
         RXDta=cmd[position];
         position+=1;
     }
-    USISRL = TXDta;
+    //Send_message_SPI();
+    USISRL = 0x0F;
     USICNT &= ~USI16B;  // re-load counter & ignore USISRH
     USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
 }
 //------------------------------------------------------------------ End ISR
 
-void Send_message_SPI (void)
-{
-    if(strcmp((const char *)cmd, "LED test") == 0)
-    {
-        if(P1OUT|0==0)//Led Off
-        {
-            TXDta=0x31;
-            USICNT &= ~USI16B;  // re-load counter & ignore USISRH
-            USICNT = 0x08;
-        }
-        if(P1OUT&1==1)//Led On
-        {
-            TXDta=0x30;
-            USICNT &= ~USI16B;  // re-load counter & ignore USISRH
-            USICNT = 0x08;
-        }
-    }
-}
 
 
