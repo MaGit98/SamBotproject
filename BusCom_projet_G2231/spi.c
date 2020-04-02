@@ -38,7 +38,6 @@ unsigned int recording_on=0;
 unsigned int position=0;
 unsigned char cmd[CMDLEN];
 
-<<<<<<< Updated upstream
 void Send_message_SPI (void)
 {
     if(strcmp((const char *)cmd, "LED test") == 0)
@@ -60,9 +59,7 @@ void Send_message_SPI (void)
         }
     }
 }
-=======
 
->>>>>>> Stashed changes
 
 /*
  * main.c
@@ -158,13 +155,13 @@ __interrupt void universal_serial_interface(void)
         RXDta=cmd[position];
         position+=1;
     }
-<<<<<<< Updated upstream
+
     //Send_message_SPI();
     USISRL = 0x0F;
-=======
+
     Send_message_SPI();
     USISRL = TXDta;
->>>>>>> Stashed changes
+
     USICNT &= ~USI16B;  // re-load counter & ignore USISRH
     USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
 }
