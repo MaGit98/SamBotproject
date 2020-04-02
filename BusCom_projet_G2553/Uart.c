@@ -10,7 +10,7 @@
 #include "main.h"
 #include "Motor.h"
 #include "Spi.h"
-
+#include "Uart.h"
 
 /*
  * Variables globales
@@ -50,7 +50,41 @@ void envoi_msg_UART(unsigned char *msg)
     }
 }
 
+void go (void)
+{
+    avancer(20);
+}
 
+void stop (void)
+{
+    avancer(0);
+}
+
+void forward (void)
+{
+    avancer(20);
+}
+
+void back (void)
+{
+    reculer(20);
+}
+void right (void)
+{
+    tourner_droite();
+}
+void left (void)
+{
+    tourner_gauche();
+}
+void detection_on (void)
+{
+    tourner_gauche();
+}
+void detection_off (void)
+{
+    tourner_gauche();
+}
 
 void interpreteur( void )
 {
@@ -133,6 +167,7 @@ void interpreteur( void )
         envoi_msg_UART("\rRobot Ready !\r\n"); // user prompt
         envoi_msg_UART(PROMPT_ROBOT);        //---------------------------- command prompt
      }
+
     else if (strcmp((const char *)cmd, "") == 0)
     {
         envoi_msg_UART(NEW_LINE);
@@ -179,6 +214,70 @@ void interpreteur_robot( void )
         envoi_msg_UART("'detection off' : deactivate the obstacle detection");
         envoi_msg_UART(NEW_LINE);
     }
+    else if (strcmp((const char *)cmd, "go") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        go();
+    }
+    else if (strcmp((const char *)cmd, "stop") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        stop();
+    }
+    else if (strcmp((const char *)cmd, "forward") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        forward();
+    }
+    else if (strcmp((const char *)cmd, "back") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        back();
+    }
+    else if (strcmp((const char *)cmd, "right") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        right();
+    }
+    else if (strcmp((const char *)cmd, "left") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        left();
+    }
+    else if (strcmp((const char *)cmd, "detection_on") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        detection_on();
+    }
+    else if (strcmp((const char *)cmd, "detection_off") == 0)
+    {
+        envoi_msg_UART(NEW_LINE);
+        envoi_msg_UART((unsigned char *)cmd);
+        envoi_msg_UART("->");
+        envoi_msg_UART(NEW_LINE);
+        detection_off();
+    }
     else if (strcmp((const char *)cmd, "") == 0)
     {
         envoi_msg_UART(NEW_LINE);
@@ -201,3 +300,4 @@ void interpreteur_robot( void )
     }
     envoi_msg_UART(PROMPT_ROBOT);        //---------------------------- command prompt
 }
+
