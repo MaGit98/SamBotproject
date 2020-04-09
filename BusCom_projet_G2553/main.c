@@ -30,7 +30,10 @@
 #include "main.h"
 #include "Spi.h"
 #include "Motor.h"
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 
 /*
@@ -112,8 +115,14 @@ void main( void )
     init_UART();
     init_USCI();
     initialiser_moteur();
+<<<<<<< Updated upstream
     avancer(90);
     while(1);
+=======
+    avancer(0);
+
+
+>>>>>>> Stashed changes
     envoi_msg_UART("\rReady !\r\n"); // user prompt
     envoi_msg_UART(PROMPT);        //---------------------------- command prompt
 
