@@ -132,11 +132,13 @@ void main( void )
     init_UART();
     init_USCI();
     initialiser_moteur();
-    //avancer(90);
+    avancer(2);
     //while(1);
-    avancer(0);
+    //avancer(0);
     envoi_msg_UART("\rReady !\r\n"); // user prompt
-    envoi_msg_UART(PROMPT);        //---------------------------- command prompt
+    envoi_msg_UART(PROMPT);
+    IE2 |= UCB0RXIE; // ENABLE Interrupt on receive caracter from SPI
+    //---------------------------- command prompt
 
  while(1)
     {
@@ -218,12 +220,13 @@ __interrupt void USCIAB0RX_ISR()
         cmd[0] = UCB0RXBUF;
         cmd[1] = 0x00;
         P1OUT ^= LED_R;
+
         while(!(IFG2 & UCB0TXIFG));
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART(PROMPT_SLAVE);
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART("->");
-        envoi_msg_UART(UCB0TXBUF);
+        envoi_msg_UART(UCB0RXBUF);
     }
 
 
