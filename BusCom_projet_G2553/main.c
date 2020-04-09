@@ -30,10 +30,6 @@
 #include "main.h"
 #include "Spi.h"
 #include "Motor.h"
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 
 /*
@@ -41,7 +37,8 @@
  */
 // static const char spi_in = 0x37;
 extern unsigned char cmd[CMDLEN];      // tableau de caracteres lie a la commande user
-extern int interpreteur_state;
+extern unsigned int interpreteur_state;
+extern int robot_command;
 
 unsigned char car = 0x30;       // 0
 unsigned int  nb_car = 0;
@@ -92,6 +89,26 @@ void init_BOARD( void )
     P1OUT|=LED_G;
 }
 
+void command(int robot_commande)
+{
+    switch(robot_command) {
+
+       case 1 :
+          avancer(20);
+
+          break;
+
+       case 2 :
+          avancer(0);
+
+          break;
+
+
+       default :
+       return 0;
+    }
+}
+
 /* ----------------------------------------------------------------------------
  * Fonction d'initialisation de l'UART
  * Entree : -
@@ -115,14 +132,12 @@ void main( void )
     init_UART();
     init_USCI();
     initialiser_moteur();
-<<<<<<< Updated upstream
-    avancer(90);
-    while(1);
-=======
+
+    //avancer(90);
+    //while(1);
+
     avancer(0);
 
-
->>>>>>> Stashed changes
     envoi_msg_UART("\rReady !\r\n"); // user prompt
     envoi_msg_UART(PROMPT);        //---------------------------- command prompt
 
@@ -130,7 +145,7 @@ void main( void )
     {
         if( intcmd )
         {
-            //while ((UCB0STAT & UCBUSY));   // attend que USCI_SPI soit dispo.
+           while ((UCB0STAT & UCBUSY));   // attend que USCI_SPI soit dispo.
 
             if (interpreteur_state == 1)
             {
@@ -141,6 +156,8 @@ void main( void )
                 interpreteur();         // execute la commande utilisateur
             }
             intcmd = FALSE;         // acquitte la commande en cours
+            command(robot_command);
+
         }
         else
         {
@@ -211,6 +228,7 @@ __interrupt void USCIAB0RX_ISR()
         envoi_msg_UART("->");
         envoi_msg_UART(UCB0TXBUF);
     }
+
 
 }
 //------------------------------------------------------------------ End ISR

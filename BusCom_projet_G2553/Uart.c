@@ -17,6 +17,7 @@
  */
 unsigned char cmd[CMDLEN];
 unsigned int interpreteur_state = 0;
+unsigned int robot_command=0;
 
 void init_UART( void )
 {
@@ -220,7 +221,8 @@ void interpreteur_robot( void )
         envoi_msg_UART((unsigned char *)cmd);
         envoi_msg_UART("->");
         envoi_msg_UART(NEW_LINE);
-        go();
+        //go();
+        robot_command=1;
     }
     else if (strcmp((const char *)cmd, "stop") == 0)
     {
@@ -228,7 +230,8 @@ void interpreteur_robot( void )
         envoi_msg_UART((unsigned char *)cmd);
         envoi_msg_UART("->");
         envoi_msg_UART(NEW_LINE);
-        stop();
+        //stop();
+        robot_command=2;
     }
     else if (strcmp((const char *)cmd, "forward") == 0)
     {
