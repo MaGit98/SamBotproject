@@ -163,7 +163,7 @@ void interpreteur( void )
         envoi_msg_UART((unsigned char *)cmd);
         envoi_msg_UART(NEW_LINE);
         interpreteur_state = 1;
-        initialiser_moteur();
+        //initialiser_moteur();
         envoi_msg_UART("\rRobot Ready !\r\n"); // user prompt
         envoi_msg_UART(PROMPT_ROBOT);        //---------------------------- command prompt
      }

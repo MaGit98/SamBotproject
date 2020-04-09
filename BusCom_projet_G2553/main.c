@@ -29,6 +29,7 @@
 #include "Uart.h"
 #include "main.h"
 #include "Spi.h"
+#include "Motor.h"
 
 
 
@@ -110,6 +111,8 @@ void main( void )
     init_BOARD();
     init_UART();
     init_USCI();
+    initialiser_moteur();
+    avancer(0);
 
     envoi_msg_UART("\rReady !\r\n"); // user prompt
     envoi_msg_UART(PROMPT);        //---------------------------- command prompt

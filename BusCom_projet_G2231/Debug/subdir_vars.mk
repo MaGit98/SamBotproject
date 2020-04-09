@@ -9,21 +9,21 @@ CMD_SRCS += \
 ../lnk_msp430g2231.cmd 
 
 C_SRCS += \
-../ServoMoteur_v2.c 
+../spi.c 
 
 C_DEPS += \
-./ServoMoteur_v2.d 
+./spi.d 
 
 OBJS += \
-./ServoMoteur_v2.obj 
+./spi.obj 
 
 OBJS__QUOTED += \
-"ServoMoteur_v2.obj" 
+"spi.obj" 
 
 C_DEPS__QUOTED += \
-"ServoMoteur_v2.d" 
+"spi.d" 
 
 C_SRCS__QUOTED += \
-"../ServoMoteur_v2.c" 
+"../spi.c" 
 
 
