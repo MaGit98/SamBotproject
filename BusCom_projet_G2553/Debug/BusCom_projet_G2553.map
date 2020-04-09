@@ -1,7 +1,7 @@
 ******************************************************************************
-                  MSP430 Linker PC v18.1.2                     
+                  MSP430 Linker PC v18.12.4                    
 ******************************************************************************
->> Linked Thu Apr  9 10:11:12 2020
+>> Linked Thu Apr  9 10:14:12 2020
 
 OUTPUT FILE NAME:   <BusCom_projet_G2553.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000c9d6
@@ -172,7 +172,7 @@ MODULE SUMMARY
     +--+----------------------------+------+---------+---------+
        Total:                       2334   862       25     
                                                             
-    D:\Logiciels\Code Composer Studio\CCS\ccsv8\tools\compiler\ti-cgt-msp430_18.1.2.LTS\lib\rts430_eabi.lib
+    C:\ti\ccs930\ccs\tools\compiler\ti-cgt-msp430_18.12.4.LTS\lib\rts430_eabi.lib
        copy_decompress_lzss.c.obj   124    0         0      
        lsr16.asm.obj                76     0         0      
        autoinit.c.obj               66     0         0      

@@ -10,9 +10,10 @@
 
 void initialiser_moteur(void)
 {
-    //BCSCTL1 = CALBC1_1MHZ; //réglage de la fréquence du timer
-    //DCOCTL = CALDCO_1MHZ;
-
+    /*
+    BCSCTL1 = CALBC1_1MHZ; //réglage de la fréquence du timer
+    DCOCTL = CALDCO_1MHZ;
+    */
     /* CODE ROUE GAUCHE */
     P2DIR |= BIT2; //P2.2 est définit comme une sortie
 
