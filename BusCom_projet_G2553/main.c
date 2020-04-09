@@ -112,8 +112,8 @@ void main( void )
     init_UART();
     init_USCI();
     initialiser_moteur();
-    avancer(0);
-
+    avancer(90);
+    while(1);
     envoi_msg_UART("\rReady !\r\n"); // user prompt
     envoi_msg_UART(PROMPT);        //---------------------------- command prompt
 

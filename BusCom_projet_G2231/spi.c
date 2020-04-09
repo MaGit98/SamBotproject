@@ -60,7 +60,6 @@ void Send_message_SPI (void)
     }
 }
 
-
 /*
  * main.c
  */
