@@ -97,9 +97,9 @@ void Display_text_SPI(void)
         envoi_msg_UART(PROMPT_SLAVE);
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART("->");
-        while (UCB0TXBUF == "!")
+        while (UCB0RXBUF == "!")
         {
-            envoi_msg_UART(UCB0TXBUF);
+            envoi_msg_UART(UCB0RXBUF);
         }
     }
     else
