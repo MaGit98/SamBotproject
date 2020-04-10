@@ -226,7 +226,8 @@ __interrupt void USCIAB0RX_ISR()
         envoi_msg_UART(PROMPT_SLAVE);
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART("->");
-        envoi_msg_UART(UCB0RXBUF);
+
+        envoi_msg_UART( rearrange_spi());
     }
 
 

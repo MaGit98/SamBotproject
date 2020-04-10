@@ -91,16 +91,19 @@ void Send_text_SPI(unsigned char  text[])
 /*
  * Function to reorganize the bits at the reception
  */
-void rearrange_spi(void){
+char rearrange_spi(void){
     char arrange[8];
-    char var = UCB0RXBUF;
-    for (int i = 7; i=0; i--){
-        arrange[i]= var >>i;
+    char var;
+    var= UCB0RXBUF;
+    unsigned int i;
+    for (i = 7; i >= 0; i--){
+        arrange[i]= (var >>i );
     }
-    for(int j=0; j<8;j++){
-        (var >>i) = arrange[i];
+    for(i=0; i<8; i++){
+       var = var >>i;
+       var = arrange[i];
     }
-    var = UCB0RXBUF;
+    return var;
 }
 
 //dsiplay text from SPI to UART screen
