@@ -71,7 +71,33 @@ void Send_message_SPI (void)
         USICNT &= ~USI16B;  // re-load counter & ignore USISRH
         USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
     }
+           TXDta = 0x23;
+           USISRL = TXDta;
+           USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+           USICNT = 0x08;
+           TXDta = 0x23;
+           USISRL = RXDta;
+           USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+           USICNT = 0x08;
+           TXDta = 0x21;
+           USISRL = TXDta;
+           USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+           USICNT = 0x08;
 }
+/*
+void Send_text_SPI(unsigned char  text[])
+{
+    unsigned char *p;
+    p = text;
+    Send_char_SPI(0x23);  //all communication begin by "#" and end by "!"
+    while(*p != 0)
+    {
+        USISRL = *p;
+        p++;
+    }
+    Send_char_SPI(0x21);
+}
+*/
 
 /*
  * main.c
@@ -169,12 +195,10 @@ __interrupt void universal_serial_interface(void)
     }
 
 
-    USISRL = 0x0F;
+    //USISRL = 0x0F;
 
     Send_message_SPI();
 
+
 }
 //------------------------------------------------------------------ End ISR
-
-
-

@@ -88,6 +88,21 @@ void Send_text_SPI(unsigned char  text[])
     Send_char_SPI(0x21);
 }
 
+/*
+ * Function to reorganize the bits at the reception
+ */
+void rearrange_spi(void){
+    char arrange[8];
+    char var = UCB0RXBUF;
+    for (int i = 7; i=0; i--){
+        arrange[i]= var >>i;
+    }
+    for(int j=0; j<8;j++){
+        (var >>i) = arrange[i];
+    }
+    var = UCB0RXBUF;
+}
+
 //dsiplay text from SPI to UART screen
 void Display_text_SPI(void)
 {
@@ -99,6 +114,7 @@ void Display_text_SPI(void)
         envoi_msg_UART("->");
         while (UCB0RXBUF == "!")
         {
+
             envoi_msg_UART(UCB0RXBUF);
         }
     }
