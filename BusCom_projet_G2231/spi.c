@@ -40,10 +40,15 @@ unsigned char cmd[CMDLEN];
 
 void Send_message_SPI (void)
 {
+
     if(strcmp((const char *)cmd, "LED test") == 0)
     {
+        TXDta = 0x23;
+        USISRL = TXDta;
+        USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+        USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
 
-        P1OUT |=BIT0;
+        //P1OUT |=BIT0;
 
         if(P1OUT|0==0)//Led Off
         {
@@ -57,6 +62,14 @@ void Send_message_SPI (void)
             USICNT &= ~USI16B;  // re-load counter & ignore USISRH
             USICNT = 0x08;
         }
+        USISRL = TXDta;
+        USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+        USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
+
+        TXDta = 0x21;
+        USISRL = TXDta;
+        USICNT &= ~USI16B;  // re-load counter & ignore USISRH
+        USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
     }
 }
 
@@ -155,14 +168,11 @@ __interrupt void universal_serial_interface(void)
         position+=1;
     }
 
-    //Send_message_SPI();
+
     USISRL = 0x0F;
 
     Send_message_SPI();
-    USISRL = TXDta;
 
-    USICNT &= ~USI16B;  // re-load counter & ignore USISRH
-    USICNT = 0x08;      // 8 bits count, that re-enable USI for next transfert
 }
 //------------------------------------------------------------------ End ISR
 

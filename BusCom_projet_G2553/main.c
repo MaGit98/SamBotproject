@@ -95,7 +95,6 @@ void command(int robot_commande)
 
        case 1 :
           avancer(20);
-
           break;
 
        case 2 :
