@@ -220,16 +220,15 @@ __interrupt void USCIAB0RX_ISR()
         cmd[1] = 0x00;
         P1OUT ^= LED_R;
 
-        while(!(IFG2 & UCB0TXIFG));
+        while(!(IFG2 & UCB0RXIFG));
         //Display_text_SPI();
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART(PROMPT_SLAVE);
         envoi_msg_UART(NEW_LINE);
         envoi_msg_UART("->");
+        envoi_msg_UART(rearrange_spi());
 
-        envoi_msg_UART( rearrange_spi());
     }
-
 
 }
 //------------------------------------------------------------------ End ISR

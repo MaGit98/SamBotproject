@@ -92,11 +92,11 @@ void Send_text_SPI(unsigned char  text[])
  * Function to reorganize the bits at the reception
  */
 char rearrange_spi(void){
-    char arrange[8];
+    char arrange[8]= {0,0,0,0,0,0,0,0};
     char var;
     var= UCB0RXBUF;
-    unsigned int i;
-    for (i = 7; i >= 0; i--){
+    int i;
+    for (i = 7; i > 0; i--){
         arrange[i]= (var >>i );
     }
     for(i=0; i<8; i++){

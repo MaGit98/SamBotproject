@@ -75,8 +75,8 @@ void Send_message_SPI (void)
            USISRL = TXDta;
            USICNT &= ~USI16B;  // re-load counter & ignore USISRH
            USICNT = 0x08;
-           TXDta = 0x23;
-           USISRL = RXDta;
+           TXDta = RXDta;
+           USISRL = TXDta;
            USICNT &= ~USI16B;  // re-load counter & ignore USISRH
            USICNT = 0x08;
            TXDta = 0x21;
